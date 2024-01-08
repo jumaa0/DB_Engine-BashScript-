@@ -27,8 +27,15 @@ case $to in
 		read -p "Enter Database Name: " database
 
 		if [ -d "$database" ]; then
-			echo "There is a Database with the same name."
-			echo "Enter another name."
+			echo "There is a Database with the same name, Enter another name."
+		elif [[ "$database" == *" "* ]]; then
+        		echo "Error: Database name cannot contain spaces. Enter another name."
+        	elif [[ "$database" =~ ^[0-9] ]]; then
+        		echo "Error: Database name cannot start with a number. Enter another name."
+        	elif [[ "$database" =~ ^[0-9] ]]; then
+        		echo "Error: Database name cannot start with a number. Enter another name."
+        	elif [[ "$database" =~ ^[^a-zA-Z0-9] ]]; then
+        		echo "Error: Database name cannot start with symbols. Enter another name."
 		else
 			mkdir ./$database
 			echo "Database created successfully."
